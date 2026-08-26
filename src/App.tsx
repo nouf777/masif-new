@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 
 import "./App.css";
+
 import AdminDashboard from "./AdminDashboard";
 
 type DayType = "national" | "weekend" | "weekday";
@@ -65,8 +66,7 @@ function App() {
   const [customerName, setCustomerName] =
     useState("");
 
-  const [phone, setPhone] =
-    useState("");
+  const [phone, setPhone] = useState("");
 
   const [selectedRating, setSelectedRating] =
     useState(0);
@@ -90,6 +90,9 @@ function App() {
     seconds: 0,
   });
 
+  /*
+   * العد التنازلي للعرض
+   */
   useEffect(() => {
     const calculateTime = () => {
       const now = new Date();
@@ -154,11 +157,6 @@ function App() {
 
   /*
    * لوحة الإدارة
-   *
-   * إذا دخل المستخدم على:
-   * /admin
-   *
-   * تظهر لوحة الإدارة بدل صفحة المستخدم.
    */
   if (window.location.pathname === "/admin") {
     return <AdminDashboard />;
@@ -188,7 +186,7 @@ function App() {
     );
 
   /*
-   * فتح الواتساب للحجز فقط
+   * فتح الواتساب
    */
   const openWhatsApp = (
     message: string
@@ -205,11 +203,10 @@ function App() {
   };
 
   /*
-   * إرسال تفاصيل الحجز
+   * إرسال تفاصيل الحجز للواتساب
    */
   const handleBooking = () => {
-    const message = `
-السلام عليكم ورحمة الله وبركاته 🌿
+    const message = `السلام عليكم ورحمة الله وبركاته 🌿
 
 أرغب بحجز "مزرعة وشاليه المصيف".
 
@@ -253,8 +250,7 @@ ${
 
 أرغب بالتأكد من توفر الموعد وتفاصيل الحجز والدفع.
 
-شكرًا لكم 🌿
-`;
+شكرًا لكم 🌿`;
 
     openWhatsApp(message);
   };
@@ -300,7 +296,6 @@ ${
       window.setTimeout(() => {
         setReviewSent(false);
       }, 6000);
-
     } catch (error) {
       console.error(
         "Firebase review error:",
@@ -310,7 +305,6 @@ ${
       alert(
         "تعذر حفظ التقييم. تأكدي من اتصال Firebase وFirestore وقواعد Rules."
       );
-
     } finally {
       setReviewLoading(false);
     }
@@ -321,11 +315,8 @@ ${
       className="app"
       dir="rtl"
     >
-
       {/* Header */}
-
       <header className="header">
-
         <a
           href="#"
           className="logo"
@@ -340,7 +331,7 @@ ${
             </strong>
 
             <span>
-              مزرعة وشاليه
+              للراحة واللحظات الجميلة 🌿
             </span>
           </div>
         </a>
@@ -369,28 +360,20 @@ ${
         >
           احجز الآن
         </a>
-
       </header>
 
-
       {/* Hero */}
-
       <section className="hero">
-
         <div className="hero-glow glow-one" />
-
         <div className="hero-glow glow-two" />
 
         <div className="hero-inner">
-
           <div className="hero-badge">
-
             <Sparkles size={16} />
 
             <span>
               أهلاً بكم في مزرعة المصيف
             </span>
-
           </div>
 
           <h1>
@@ -409,7 +392,6 @@ ${
           </p>
 
           <div className="hero-actions">
-
             <a
               href="#booking"
               className="main-button"
@@ -424,11 +406,9 @@ ${
               <Star size={18} />
               قيّم تجربتك
             </a>
-
           </div>
 
           <div className="hero-stats">
-
             <div>
               <strong>
                 40
@@ -461,28 +441,19 @@ ${
                 تأمين مسترد
               </span>
             </div>
-
           </div>
-
         </div>
-
       </section>
 
-
       {/* National Day Offer */}
-
       <section className="national-section">
-
         <div className="national-card">
-
           <div className="national-content">
-
             <div className="offer-icon">
               <Gift size={28} />
             </div>
 
             <div>
-
               <div className="offer-label">
                 🇸🇦 عرض اليوم الوطني 96
               </div>
@@ -498,20 +469,16 @@ ${
                 العرض ساري من 20 سبتمبر
                 إلى 26 سبتمبر.
               </p>
-
             </div>
-
           </div>
 
           <div className="countdown">
-
             <div className="countdown-title">
               <Clock3 size={15} />
               ينتهي عرض اليوم الوطني خلال:
             </div>
 
             <div className="time-boxes">
-
               <div>
                 <strong>
                   {timeLeft.days}
@@ -551,25 +518,17 @@ ${
                   ثانية
                 </span>
               </div>
-
             </div>
-
           </div>
-
         </div>
-
       </section>
 
-
       {/* Overview */}
-
       <section
         id="overview"
         className="section overview"
       >
-
         <div className="section-heading">
-
           <span>
             OVERVIEW
           </span>
@@ -582,11 +541,9 @@ ${
             كل اللي تحتاجه لتأخذ قرارك
             وأنت مرتاح.
           </p>
-
         </div>
 
         <div className="info-grid">
-
           <div className="info-card">
             <CalendarDays />
 
@@ -634,21 +591,15 @@ ${
               تأكيد الحجز عبر الواتساب.
             </span>
           </div>
-
         </div>
-
       </section>
 
-
       {/* Booking Calculator */}
-
       <section
         id="booking"
         className="section booking-section"
       >
-
         <div className="section-heading">
-
           <span>
             BOOKING
           </span>
@@ -661,19 +612,15 @@ ${
             اختر الباقة وعدد الأيام
             والضيوف وشوف السعر مباشرة.
           </p>
-
         </div>
 
         <div className="booking-card">
-
           <div className="booking-form">
-
             <label>
               اختر نوع الفترة
             </label>
 
             <div className="periods">
-
               <button
                 type="button"
                 className={
@@ -685,7 +632,6 @@ ${
                   setDayType("national")
                 }
               >
-
                 <strong>
                   🇸🇦 اليوم الوطني
                 </strong>
@@ -697,9 +643,7 @@ ${
                 <small>
                   بدل 1200 ر.س
                 </small>
-
               </button>
-
 
               <button
                 type="button"
@@ -712,7 +656,6 @@ ${
                   setDayType("weekend")
                 }
               >
-
                 <strong>
                   🎉 الويكند
                 </strong>
@@ -724,9 +667,7 @@ ${
                 <small>
                   الخميس والجمعة
                 </small>
-
               </button>
-
 
               <button
                 type="button"
@@ -739,7 +680,6 @@ ${
                   setDayType("weekday")
                 }
               >
-
                 <strong>
                   🌿 أيام الأسبوع
                 </strong>
@@ -751,22 +691,16 @@ ${
                 <small>
                   السبت إلى الأربعاء
                 </small>
-
               </button>
-
             </div>
 
-
             <div className="form-grid">
-
               <div className="field">
-
                 <label>
                   تاريخ الدخول
                 </label>
 
                 <div className="input-icon">
-
                   <CalendarDays size={17} />
 
                   <input
@@ -778,20 +712,15 @@ ${
                       )
                     }
                   />
-
                 </div>
-
               </div>
 
-
               <div className="field">
-
                 <label>
                   عدد الأيام
                 </label>
 
                 <div className="counter">
-
                   <button
                     type="button"
                     onClick={() =>
@@ -825,18 +754,12 @@ ${
                   >
                     <Plus size={16} />
                   </button>
-
                 </div>
-
               </div>
-
             </div>
 
-
             <div className="field guests-field">
-
               <div className="field-label-row">
-
                 <label>
                   <Users size={16} />
                   عدد الضيوف
@@ -845,7 +768,6 @@ ${
                 <strong>
                   {guests} شخص
                 </strong>
-
               </div>
 
               <input
@@ -861,14 +783,10 @@ ${
                   )
                 }
               />
-
             </div>
 
-
             <div className="form-grid">
-
               <div className="field">
-
                 <label>
                   الاسم
                 </label>
@@ -883,12 +801,9 @@ ${
                     )
                   }
                 />
-
               </div>
 
-
               <div className="field">
-
                 <label>
                   رقم الجوال
                 </label>
@@ -903,18 +818,12 @@ ${
                     )
                   }
                 />
-
               </div>
-
             </div>
-
           </div>
 
-
           <aside className="price-summary">
-
             <div className="summary-top">
-
               <span>
                 ملخص الحجز
               </span>
@@ -922,12 +831,9 @@ ${
               <div className="summary-badge">
                 {dayNames[dayType]}
               </div>
-
             </div>
 
-
             <div className="summary-lines">
-
               <div>
                 <span>
                   سعر اليوم
@@ -941,7 +847,6 @@ ${
                 </strong>
               </div>
 
-
               <div>
                 <span>
                   عدد الأيام
@@ -951,7 +856,6 @@ ${
                   {days}
                 </strong>
               </div>
-
 
               <div>
                 <span>
@@ -963,29 +867,23 @@ ${
                 </strong>
               </div>
 
-
               {savings > 0 && (
                 <div className="saving">
-
                   <span>
                     التوفير
                   </span>
 
                   <strong>
-                    -
-                    {" "}
+                    -{" "}
                     {formatNumber(
                       savings
                     )}{" "}
                     ر.س
                   </strong>
-
                 </div>
               )}
 
-
               <div>
-
                 <span>
                   التأمين المسترد
                 </span>
@@ -996,20 +894,15 @@ ${
                   )}{" "}
                   ر.س
                 </strong>
-
               </div>
-
             </div>
 
-
             <div className="total">
-
               <span>
                 إجمالي الإقامة
               </span>
 
               <strong>
-
                 {formatNumber(
                   subtotal
                 )}
@@ -1017,64 +910,43 @@ ${
                 <small>
                   {" "}ر.س
                 </small>
-
               </strong>
-
 
               {savings > 0 && (
                 <del>
-
                   {formatNumber(
                     originalTotal
                   )}{" "}
                   ر.س
-
                 </del>
               )}
-
             </div>
-
 
             <button
               type="button"
               className="booking-submit"
               onClick={handleBooking}
             >
-
               <MessageCircle size={20} />
-
               إرسال تفاصيل الحجز
-
             </button>
 
-
             <div className="secure-line">
-
               <ShieldCheck size={15} />
-
               تأكيد التوفر يتم مباشرة
               مع الإدارة
-
             </div>
-
           </aside>
-
         </div>
-
       </section>
 
-
       {/* Private Reviews */}
-
       <section
         id="review"
         className="section review-section"
       >
-
         <div className="review-container">
-
           <div className="section-heading">
-
             <span>
               YOUR REVIEW
             </span>
@@ -1087,18 +959,13 @@ ${
               رأيك يوصل لإدارة المصيف
               مباشرة ويساعدنا نحسن تجربتك.
             </p>
-
           </div>
 
-
           <div className="review-form">
-
             <div className="private-banner">
-
               <ShieldCheck size={20} />
 
               <div>
-
                 <strong>
                   تقييم خاص للإدارة
                 </strong>
@@ -1107,23 +974,17 @@ ${
                   التقييم والتعليق الذي
                   تكتبه هنا لا يظهر للزوار.
                 </span>
-
               </div>
-
             </div>
 
-
             <div className="star-picker">
-
               <span>
                 قيّم تجربتك
               </span>
 
               <div>
-
                 {[1, 2, 3, 4, 5].map(
                   (star) => (
-
                     <button
                       key={star}
                       type="button"
@@ -1134,7 +995,6 @@ ${
                       }
                       aria-label={`تقييم ${star} نجوم`}
                     >
-
                       <Star
                         size={34}
                         fill={
@@ -1144,27 +1004,19 @@ ${
                             : "none"
                         }
                       />
-
                     </button>
-
                   )
                 )}
-
               </div>
 
               <small>
-
                 {selectedRating
                   ? `${selectedRating} من 5`
                   : "اختر عدد النجوم"}
-
               </small>
-
             </div>
 
-
             <div className="review-fields">
-
               <input
                 type="text"
                 placeholder="اسمك (اختياري)"
@@ -1176,7 +1028,6 @@ ${
                 }
               />
 
-
               <textarea
                 rows={5}
                 placeholder="اكتب تعليقك عن تجربتك..."
@@ -1187,9 +1038,7 @@ ${
                   )
                 }
               />
-
             </div>
-
 
             <button
               type="button"
@@ -1201,24 +1050,18 @@ ${
               }
               onClick={handleReview}
             >
-
               <Send size={18} />
 
               {reviewLoading
                 ? "جاري حفظ تقييمك..."
                 : "إرسال التقييم للإدارة"}
-
             </button>
 
-
             {reviewSent && (
-
               <div className="success-message">
-
                 <CheckCircle2 size={22} />
 
                 <div>
-
                   <strong>
                     شكرًا لمشاركتنا تجربتك 🤍
                   </strong>
@@ -1228,29 +1071,19 @@ ${
                     لإدارة مزرعة المصيف.
                     نقدّر وقتك ورأيك الجميل 🌿
                   </span>
-
                 </div>
-
               </div>
-
             )}
-
           </div>
-
         </div>
-
       </section>
 
-
       {/* Contact */}
-
       <section
         id="contact"
         className="contact-section"
       >
-
         <div className="section-heading">
-
           <span>
             CONTACT
           </span>
@@ -1262,18 +1095,14 @@ ${
           <p>
             احجز، اسأل، أو تابعنا على حساباتنا.
           </p>
-
         </div>
 
-
         <div className="contact-grid">
-
           <a
             href={`https://wa.me/${ADMIN_WHATSAPP}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-
             <MessageCircle />
 
             <strong>
@@ -1283,16 +1112,13 @@ ${
             <span>
               تواصل وحجز مباشر
             </span>
-
           </a>
-
 
           <a
             href="https://www.tiktok.com/@masef85?_r=1&_t=ZS-99BfSgwV0wX"
             target="_blank"
             rel="noopener noreferrer"
           >
-
             <span className="social-symbol">
               ♪
             </span>
@@ -1304,16 +1130,13 @@ ${
             <span>
               شوف آخر المقاطع
             </span>
-
           </a>
-
 
           <a
             href="https://snapchat.com/t/LLfCLrLw"
             target="_blank"
             rel="noopener noreferrer"
           >
-
             <span className="social-symbol">
               S
             </span>
@@ -1325,16 +1148,13 @@ ${
             <span>
               تابع يوميات المصيف
             </span>
-
           </a>
-
 
           <a
             href="https://maps.app.goo.gl/PzazXkt8QSmksL3HA?g_st=ic"
             target="_blank"
             rel="noopener noreferrer"
           >
-
             <MapPin />
 
             <strong>
@@ -1344,26 +1164,18 @@ ${
             <span>
               افتح الخريطة
             </span>
-
           </a>
-
         </div>
-
       </section>
 
-
       {/* Footer */}
-
       <footer>
-
         <div className="footer-brand">
-
           <div className="logo-mark">
             م
           </div>
 
           <div>
-
             <strong>
               مزرعة المصيف
             </strong>
@@ -1371,14 +1183,10 @@ ${
             <span>
               للراحة واللحظات الجميلة 🌿
             </span>
-
           </div>
-
         </div>
 
-
         <div className="footer-links">
-
           <a href="#overview">
             نظرة عامة
           </a>
@@ -1394,19 +1202,14 @@ ${
           <a href="#contact">
             التواصل
           </a>
-
         </div>
-
 
         <p>
           © 2026 مزرعة المصيف — جميع الحقوق محفوظة
         </p>
-
       </footer>
 
-
       {/* Floating WhatsApp */}
-
       <a
         className="floating-whatsapp"
         href={`https://wa.me/${ADMIN_WHATSAPP}`}
@@ -1414,18 +1217,12 @@ ${
         rel="noopener noreferrer"
         aria-label="واتساب"
       >
-
         <MessageCircle size={24} />
-
       </a>
 
-
       <div className="scroll-indicator">
-
         <ChevronDown size={18} />
-
       </div>
-
     </div>
   );
 }
