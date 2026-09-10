@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 
 import {
@@ -89,6 +90,66 @@ function App() {
     minutes: 0,
     seconds: 0,
   });
+
+  /*
+   * تحديد سعر الباقة تلقائيًا حسب تاريخ الدخول
+   */
+  useEffect(() => {
+    if (!checkIn) {
+      return;
+    }
+
+    const [year, month, day] =
+      checkIn.split("-").map(Number);
+
+    const selectedDate = new Date(
+      year,
+      month - 1,
+      day
+    );
+
+    /*
+     * عرض اليوم الوطني:
+     * من 20 سبتمبر إلى 26 سبتمبر 2026
+     */
+    const nationalStart = new Date(
+      2026,
+      8,
+      20
+    );
+
+    const nationalEnd = new Date(
+      2026,
+      8,
+      26
+    );
+
+    if (
+      selectedDate >= nationalStart &&
+      selectedDate <= nationalEnd
+    ) {
+      setDayType("national");
+      return;
+    }
+
+    /*
+     * الخميس = 4
+     * الجمعة = 5
+     * السبت = 6
+     */
+    const dayOfWeek =
+      selectedDate.getDay();
+
+    if (
+      dayOfWeek === 4 ||
+      dayOfWeek === 5 ||
+      dayOfWeek === 6
+    ) {
+      setDayType("weekend");
+    } else {
+      setDayType("weekday");
+    }
+  }, [checkIn]);
 
   /*
    * العد التنازلي للعرض
