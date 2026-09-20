@@ -20,7 +20,7 @@ import {
   Plus,
   Send,
   ShieldCheck,
-  Sparkles,
+
   Star,
   Users,
 } from "lucide-react";
