@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 
 import {
@@ -67,7 +66,8 @@ function App() {
   const [customerName, setCustomerName] =
     useState("");
 
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] =
+    useState("");
 
   const [selectedRating, setSelectedRating] =
     useState(0);
@@ -135,18 +135,21 @@ function App() {
     /*
      * الخميس = 4
      * الجمعة = 5
-     * السبت = 6
+     *
+     * الويكند = الخميس والجمعة
      */
     const dayOfWeek =
       selectedDate.getDay();
 
     if (
       dayOfWeek === 4 ||
-      dayOfWeek === 5 ||
-      dayOfWeek === 6
+      dayOfWeek === 5
     ) {
       setDayType("weekend");
     } else {
+      /*
+       * السبت إلى الأربعاء
+       */
       setDayType("weekday");
     }
   }, [checkIn]);
@@ -167,7 +170,10 @@ function App() {
         59
       );
 
-      if (now.getTime() >= target.getTime()) {
+      if (
+        now.getTime() >=
+        target.getTime()
+      ) {
         setTimeLeft({
           days: 0,
           hours: 0,
@@ -207,10 +213,11 @@ function App() {
 
     calculateTime();
 
-    const timer = window.setInterval(
-      calculateTime,
-      1000
-    );
+    const timer =
+      window.setInterval(
+        calculateTime,
+        1000
+      );
 
     return () =>
       window.clearInterval(timer);
@@ -219,11 +226,15 @@ function App() {
   /*
    * لوحة الإدارة
    */
-  if (window.location.pathname === "/admin") {
+  if (
+    window.location.pathname ===
+    "/admin"
+  ) {
     return <AdminDashboard />;
   }
 
-  const currentPrice = prices[dayType];
+  const currentPrice =
+    prices[dayType];
 
   const originalPrice =
     originalPrices[dayType];
@@ -242,9 +253,9 @@ function App() {
   const formatNumber = (
     number: number
   ) =>
-    new Intl.NumberFormat("ar-SA").format(
-      number
-    );
+    new Intl.NumberFormat(
+      "ar-SA"
+    ).format(number);
 
   /*
    * فتح الواتساب
@@ -331,7 +342,8 @@ ${
     setReviewSent(false);
 
     const name =
-      reviewName.trim() || "زائر";
+      reviewName.trim() ||
+      "زائر";
 
     const comment =
       reviewText.trim();
@@ -382,9 +394,7 @@ ${
           href="#"
           className="logo"
         >
-          <div className="logo-mark">
-            م
-          </div>
+         
 
           <div>
             <strong>
@@ -392,7 +402,7 @@ ${
             </strong>
 
             <span>
-              للراحة واللحظات الجميلة 🌿
+              للراحة واللحظات الجميلة 
             </span>
           </div>
         </a>
@@ -429,20 +439,14 @@ ${
         <div className="hero-glow glow-two" />
 
         <div className="hero-inner">
-          <div className="hero-badge">
-            <Sparkles size={16} />
-
-            <span>
-              أهلاً بكم في مزرعة المصيف
-            </span>
-          </div>
+         
 
           <h1>
             لحظات أجمل تبدأ
             <br />
 
             <span>
-              من هنا 🌿
+              من هنا 
             </span>
           </h1>
 
@@ -689,9 +693,19 @@ ${
                     ? "active"
                     : ""
                 }
-                onClick={() =>
-                  setDayType("national")
+                disabled={
+                  dayType !== "national"
                 }
+                onClick={() => {
+                  if (
+                    dayType ===
+                    "national"
+                  ) {
+                    setDayType(
+                      "national"
+                    );
+                  }
+                }}
               >
                 <strong>
                   🇸🇦 اليوم الوطني
@@ -713,9 +727,19 @@ ${
                     ? "active"
                     : ""
                 }
-                onClick={() =>
-                  setDayType("weekend")
+                disabled={
+                  dayType !== "weekend"
                 }
+                onClick={() => {
+                  if (
+                    dayType ===
+                    "weekend"
+                  ) {
+                    setDayType(
+                      "weekend"
+                    );
+                  }
+                }}
               >
                 <strong>
                   🎉 الويكند
@@ -737,9 +761,19 @@ ${
                     ? "active"
                     : ""
                 }
-                onClick={() =>
-                  setDayType("weekday")
+                disabled={
+                  dayType !== "weekday"
                 }
+                onClick={() => {
+                  if (
+                    dayType ===
+                    "weekday"
+                  ) {
+                    setDayType(
+                      "weekday"
+                    );
+                  }
+                }}
               >
                 <strong>
                   🌿 أيام الأسبوع
@@ -1232,9 +1266,7 @@ ${
       {/* Footer */}
       <footer>
         <div className="footer-brand">
-          <div className="logo-mark">
-            م
-          </div>
+         
 
           <div>
             <strong>

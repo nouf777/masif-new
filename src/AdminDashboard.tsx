@@ -245,23 +245,25 @@ function AdminDashboard() {
               width: "100%",
               maxWidth: "430px",
               background: "#ffffff",
-              borderRadius: "24px",
+              borderRadius: "18px",
               padding: "35px",
+              border: "1px solid #e7e3d8",
               boxShadow:
-                "0 20px 60px rgba(0,0,0,0.10)",
+                "0 2px 12px rgba(35, 40, 30, 0.06)",
             }}
           >
             {/* أيقونة القفل */}
             <div
               style={{
-                width: "65px",
-                height: "65px",
-                borderRadius: "18px",
+                width: "60px",
+                height: "60px",
+                borderRadius: "14px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 margin: "0 auto 20px",
-                background: "#f1f7f3",
+                background: "#eef2ea",
+                color: "#3d5336",
               }}
             >
               <Lock size={30} />
@@ -351,10 +353,11 @@ function AdminDashboard() {
                         "border-box",
                       padding:
                         "14px 45px 14px 14px",
-                      borderRadius: "12px",
+                      borderRadius: "10px",
                       border:
-                        "1px solid #ddd",
-                      fontSize: "15px",
+                        "1px solid #e7e3d8",
+                      background: "#faf9f6",
+                      fontSize: "16px",
                     }}
                   />
                 </div>
@@ -411,10 +414,11 @@ function AdminDashboard() {
                         "border-box",
                       padding:
                         "14px 45px 14px 14px",
-                      borderRadius: "12px",
+                      borderRadius: "10px",
                       border:
-                        "1px solid #ddd",
-                      fontSize: "15px",
+                        "1px solid #e7e3d8",
+                      background: "#faf9f6",
+                      fontSize: "16px",
                     }}
                   />
                 </div>
@@ -439,18 +443,23 @@ function AdminDashboard() {
               {/* زر الدخول */}
               <button
                 type="button"
+                className="admin-primary-btn"
                 onClick={handleLogin}
                 disabled={loginLoading}
                 style={{
                   width: "100%",
                   border: "none",
-                  borderRadius: "12px",
+                  borderRadius: "10px",
                   padding: "15px",
                   cursor: loginLoading
                     ? "not-allowed"
                     : "pointer",
                   fontSize: "16px",
                   fontWeight: 700,
+                  background: "#3d5336",
+                  color: "#ffffff",
+                  transition:
+                    "background 0.2s ease",
                 }}
               >
                 {loginLoading
@@ -502,6 +511,7 @@ function AdminDashboard() {
 
           <button
             type="button"
+            className="admin-logout-btn"
             onClick={handleLogout}
             title="تسجيل الخروج"
             style={{
@@ -510,7 +520,10 @@ function AdminDashboard() {
               gap: "7px",
               padding: "10px 15px",
               borderRadius: "10px",
-              border: "none",
+              border: "1px solid #e7e3d8",
+              background: "#ffffff",
+              color: "#3f4437",
+              fontWeight: 600,
               cursor: "pointer",
             }}
           >
