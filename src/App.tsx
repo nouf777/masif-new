@@ -20,7 +20,6 @@ import {
   Plus,
   Send,
   ShieldCheck,
-
   Star,
   Users,
 } from "lucide-react";
@@ -34,7 +33,7 @@ type DayType = "national" | "weekend" | "weekday";
 const ADMIN_WHATSAPP = "966506910089";
 
 const prices: Record<DayType, number> = {
-  national: 996,
+  national: 900,
   weekend: 850,
   weekday: 650,
 };
@@ -52,9 +51,6 @@ const dayNames: Record<DayType, string> = {
 };
 
 function App() {
-  const [dayType, setDayType] =
-    useState<DayType>("national");
-
   const [days, setDays] = useState(1);
 
   const [guests, setGuests] = useState(15);
@@ -94,13 +90,15 @@ function App() {
   /*
    * تحديد سعر الباقة تلقائيًا حسب تاريخ الدخول
    */
-  useEffect(() => {
-    if (!checkIn) {
-      return;
+  const getDayType = (
+    dateString: string
+  ): DayType => {
+    if (!dateString) {
+      return "national";
     }
 
     const [year, month, day] =
-      checkIn.split("-").map(Number);
+      dateString.split("-").map(Number);
 
     const selectedDate = new Date(
       year,
@@ -128,8 +126,7 @@ function App() {
       selectedDate >= nationalStart &&
       selectedDate <= nationalEnd
     ) {
-      setDayType("national");
-      return;
+      return "national";
     }
 
     /*
@@ -145,14 +142,16 @@ function App() {
       dayOfWeek === 4 ||
       dayOfWeek === 5
     ) {
-      setDayType("weekend");
-    } else {
-      /*
-       * السبت إلى الأربعاء
-       */
-      setDayType("weekday");
+      return "weekend";
     }
-  }, [checkIn]);
+
+    /*
+     * السبت إلى الأربعاء
+     */
+    return "weekday";
+  };
+
+  const dayType = getDayType(checkIn);
 
   /*
    * العد التنازلي للعرض
@@ -248,7 +247,7 @@ function App() {
   const savings =
     originalTotal - subtotal;
 
-  const insurance = 500;
+  const insurance = 200;
 
   const formatNumber = (
     number: number
@@ -394,8 +393,6 @@ ${
           href="#"
           className="logo"
         >
-         
-
           <div>
             <strong>
               مزرعة المصيف
@@ -439,8 +436,6 @@ ${
         <div className="hero-glow glow-two" />
 
         <div className="hero-inner">
-         
-
           <h1>
             لحظات أجمل تبدأ
             <br />
@@ -498,7 +493,7 @@ ${
 
             <div>
               <strong>
-                500
+                200
               </strong>
 
               <span>
@@ -641,7 +636,7 @@ ${
             </strong>
 
             <span>
-              500 ر.س مستردة عند الخروج.
+              200 ر.س مستردة عند الخروج.
             </span>
           </div>
 
@@ -696,23 +691,13 @@ ${
                 disabled={
                   dayType !== "national"
                 }
-                onClick={() => {
-                  if (
-                    dayType ===
-                    "national"
-                  ) {
-                    setDayType(
-                      "national"
-                    );
-                  }
-                }}
               >
                 <strong>
                   🇸🇦 اليوم الوطني
                 </strong>
 
                 <span>
-                  996 ر.س
+                  900 ر.س
                 </span>
 
                 <small>
@@ -730,16 +715,6 @@ ${
                 disabled={
                   dayType !== "weekend"
                 }
-                onClick={() => {
-                  if (
-                    dayType ===
-                    "weekend"
-                  ) {
-                    setDayType(
-                      "weekend"
-                    );
-                  }
-                }}
               >
                 <strong>
                   🎉 الويكند
@@ -764,16 +739,6 @@ ${
                 disabled={
                   dayType !== "weekday"
                 }
-                onClick={() => {
-                  if (
-                    dayType ===
-                    "weekday"
-                  ) {
-                    setDayType(
-                      "weekday"
-                    );
-                  }
-                }}
               >
                 <strong>
                   🌿 أيام الأسبوع
@@ -1266,8 +1231,6 @@ ${
       {/* Footer */}
       <footer>
         <div className="footer-brand">
-         
-
           <div>
             <strong>
               مزرعة المصيف

@@ -110,12 +110,10 @@ function AdminDashboard() {
   // جلب التقييمات بعد تسجيل الدخول فقط
   useEffect(() => {
     if (!user) {
-      setReviews([]);
-      setLoading(false);
       return;
     }
 
-    setLoading(true);
+    
 
     const reviewsQuery = query(
       collection(db, "reviews"),
